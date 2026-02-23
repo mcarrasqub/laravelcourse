@@ -1,18 +1,15 @@
-<?php 
+<?php
 
-namespace App\Http\Controllers; 
-use Illuminate\View\View; 
+namespace App\Http\Controllers;
 
-class HomeController extends Controller 
+use Illuminate\View\View;
 
-{ 
+class HomeController extends Controller
+{
+    public function index(): View
+    {
 
-    public function index(): View 
+        return view('home.index');
 
-    { 
-
-        return view('home.index'); 
-
-    } 
-
-} 
+    }
+}
