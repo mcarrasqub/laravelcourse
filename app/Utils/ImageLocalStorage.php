@@ -1,39 +1,27 @@
-<?php  
+<?php
 
- 
+namespace App\Utils;
 
-namespace App\Utils; 
+use App\Interfaces\ImageStorage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
- 
+class ImageLocalStorage implements ImageStorage
+{
+    public function store(Request $request): void
+    {
 
-use App\Interfaces\ImageStorage; 
+        if ($request->hasFile('profile_image')) {
 
-use Illuminate\Http\Request; 
+            Storage::disk('public')->put(
 
-use Illuminate\Support\Facades\Storage; 
+                'test.png',
 
- 
+                file_get_contents($request->file('profile_image')->getRealPath())
 
-class ImageLocalStorage implements ImageStorage 
+            );
 
-{ 
+        }
 
-    public function store(Request $request): void 
-
-    { 
-
-        if ($request->hasFile('profile_image')) { 
-
-            Storage::disk('public')->put( 
-
-                'test.png', 
-
-                file_get_contents($request->file('profile_image')->getRealPath()) 
-
-            ); 
-
-        } 
-
-    } 
-
-} 
+    }
+}
